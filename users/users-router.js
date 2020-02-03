@@ -97,7 +97,7 @@ router.get('/', (req,res) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({message: 'Unable to find users'})
+            res.status(500).json({message: 'Unable to find users', err})
         })
 })
 
