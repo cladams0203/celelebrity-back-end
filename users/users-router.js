@@ -23,7 +23,7 @@ router.post('/register', (req,res) => {
             })
             .catch(err => {
                 console.log(err)
-                res.status(500).json({message: 'unable to register user'})
+                res.status(500).json({message: 'unable to register user', err})
             })
 })
 
