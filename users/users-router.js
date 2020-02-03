@@ -2,6 +2,7 @@ const router = require('express').Router()
 const db = require('./users-modal')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const middleWare = require('../middleware')
 
 router.post('/register', (req,res) => {
     const { username, password } = req.body
@@ -46,10 +47,49 @@ router.post('/login', (req,res) => {
             })
 })
 
+router.put('/:id', middleWare.validateToken, (req,res) => {
+   const { username, password } = req.body
+    !username || !password ?
+        res.status(403).json({message: 'Please provide a username and password'}) :
+        db.findById(req.params.id)
+            .then(user => {
+                if(user) {
+                    db.update(req.user.id, { username, password: bcrypt.hashSync(password, 4) })
+                    .then(user => {
+                        res.status(201).json({message: 'Updated user successfully'})
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        res.status(500).json({message: 'Unable to edit user'})
+                    })
+                }else {
+                    res.status(403).json({message: 'user id does not exist'})
+                }
+                
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(500).json({message: 'unable to edit user'})
+            })
+        
+})
+router.get('/', (req,res) => {
+    db.find()
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'Unable to find users'})
+        })
+})
+
+
 
 function generateToken (user) {
     const payload = {
-        username: user.username
+        user: user.username,
+        id: user.id
     }
     const options ={
         expiresIn: '1d'
