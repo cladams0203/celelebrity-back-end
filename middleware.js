@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 
+
 module.exports = {
     validateToken
 }
@@ -20,3 +21,4 @@ function validateToken(req,res,next) {
     }
 
 }
+

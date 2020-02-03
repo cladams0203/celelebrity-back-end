@@ -73,6 +73,23 @@ router.put('/:id', middleWare.validateToken, (req,res) => {
             })
         
 })
+router.delete('/:id', middleWare.validateToken, (req,res) => {
+    db.find(req.params.id)
+        .then(user => {
+            if(user) {
+                db.remove(req.params.id)
+                    .then(user => {
+                        res.status(201).json({message: 'successfully removed user'})
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        res.status(500).json({message: 'unable to remove user'})
+                    })
+            }else{
+                res.status(403).json({message: 'User id is invlaid'})
+            }
+        })
+})
 router.get('/', (req,res) => {
     db.find()
         .then(user => {
