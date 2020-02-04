@@ -55,6 +55,31 @@
     }
 ```
 ---
+## Edit User
+### Endpoint /api/users/:id
+```
+    {
+        "username": "example",         required
+        "password": "example"          required
+    }
+```
+#### Returns
+```
+    {
+        "message": "Updated user successfully"
+    }
+```
+---
+## Delete User
+### Endpoint /api/users/:id
+
+#### Returns
+```
+    {
+        "message": "Successfully removed user"
+    }
+```
+---
 ## Celebs
 ### Endpoint /api/celebs
 
@@ -92,3 +117,16 @@
         "user_id": 1
     }]
 ```
+---
+## Add Score
+### Endpoint /api/scores/:id
+```
+    {
+        "score" : users score
+    }
+```
+#### Returns
+```
+    score id number
+```
+---
