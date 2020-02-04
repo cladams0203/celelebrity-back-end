@@ -8,7 +8,6 @@ router.post('/register', (req,res) => {
     const { username, password } = req.body
     !username || !password ?
         res.status(403).json({message: 'please provide a username and a password'}) :
-        console.log()
         db.insert({ username, password: bcrypt.hashSync(password, 4) })
             .then(user => {
                 db.findById(user)
