@@ -27,11 +27,11 @@ router.get('/:id', (req,res) => {
 router.post('/:id', (req,res) => {
     db.insert(req.params.id, req.body.score)
         .then(score => {
-            res.status(201).json(score)
+            res.status(201).json({message: 'added score successfully'})
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({message: 'unable to post user score'})
+            res.status(500).json({message: 'unable to add score'})
         })
 })
 
