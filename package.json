@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/cladams0203/celelebrity-back-end#readme",
   "dependencies": {
+    "amazon-cognito-identity-js": "^3.2.5",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
