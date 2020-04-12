@@ -5,3 +5,4 @@ phases:
     commands:
       - npm install
       - pip install --upgrade awscli
+  
