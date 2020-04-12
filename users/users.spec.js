@@ -44,6 +44,7 @@ describe('Edit User', () => {
         const register = await request(server)
         .post('/api/users/register')
         .send({ username: "chris", password: "taco" })
+        console.log(register.body)
         const put = await request(server)
         .put('/api/users/1')
         .send({username: "chris2", password: "taco2"})
